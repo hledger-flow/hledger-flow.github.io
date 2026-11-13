@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0nihbii" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,17 +172,27 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first CSV statement</span>
+				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: An hledger report</span>
+				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: Adding more statements</span>
+				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
 				
 			</a>
 	</li>
@@ -346,7 +356,13 @@
 		<a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
+		<a href="#hledger-config-file" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">hledger config file</span></a>
+		
+	</li><li style="--depth: 0;" class="astro-jugkfwgx">
 		<a href="#status-for-scripts-and-agents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Status for scripts and agents</span></a>
+		
+	</li><li style="--depth: 0;" class="astro-jugkfwgx">
+		<a href="#paths-in-your-home-folder" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Paths in your home folder</span></a>
 		
 	</li>
 </ul></div>
@@ -366,7 +382,13 @@
 		<a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
+		<a href="#hledger-config-file" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">hledger config file</span></a>
+		
+	</li><li style="--depth: 0;" class="astro-jugkfwgx">
 		<a href="#status-for-scripts-and-agents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Status for scripts and agents</span></a>
+		
+	</li><li style="--depth: 0;" class="astro-jugkfwgx">
+		<a href="#paths-in-your-home-folder" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Paths in your home folder</span></a>
 		
 	</li>
 </ul>
@@ -394,18 +416,40 @@
 <code dir="auto">hledger-flow</code>) anywhere in your ledger. It lists your accounts, flags
 statements in the wrong place, and suggests what to do next.
 <code dir="auto">hledger-flow init</code> starts a new ledger.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="hledger-config-file">hledger config file</h2><a class="sl-anchor-link" href="#hledger-config-file"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “hledger config file”</span></a></div>
+<p>hledger 1.40 and later read default options from a config file: the one you
+give with <code dir="auto">--hledger-conf</code>, or else the first it finds of <code dir="auto">hledger.conf</code> in
+the current directory or a parent, <code dir="auto">~/.hledger.conf</code>, and <code dir="auto">hledger.conf</code> in
+your XDG config directory. hledger-flow runs hledger from the directory you
+run it in, so that file applies to import and reports too. Options in it can
+change the journals import generates, such as <code dir="auto">--layout</code> under <code dir="auto">[print]</code>.</p>
+<p>The <code dir="auto">hledger.conf</code> line in the Environment section at the end of status names
+the file, marked <code dir="auto">(found by hledger)</code> when you didn’t give it.</p>
+<p>Import checks the hledger version before writing journals when a statement path
+contains glob characters such as <code dir="auto">[</code>, which need version-specific escaping.
+<code dir="auto">--show-options</code> always reads the version. You can give an absolute executable
+path with <code dir="auto">--hledger-path</code> even when <code dir="auto">PATH</code> is unset.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="status-for-scripts-and-agents">Status for scripts and agents</h2><a class="sl-anchor-link" href="#status-for-scripts-and-agents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Status for scripts and agents”</span></a></div>
 <p><code dir="auto">hledger-flow status --json</code> prints the same status as one JSON object:</p>
 <ul>
 <li><code dir="auto">schemaVersion</code>: currently <code dir="auto">1</code>.</li>
 <li><code dir="auto">baseDir</code>: the ledger’s absolute path.</li>
-<li><code dir="auto">environment</code>: <code dir="auto">{"hledgerFlowVersion", "commit", "compiler", "os", "arch", "cores", "availableCores", "hledgerConf"}</code>, for bug reports.</li>
-<li><code dir="auto">hledger</code>: <code dir="auto">{"path", "version"}</code>, or <code dir="auto">null</code> when hledger isn’t found.</li>
+<li><code dir="auto">environment</code>: <code dir="auto">{"hledgerFlowVersion", "commit", "compiler", "os", "arch", "cores", "availableCores", "hledgerConf"}</code>, for bug reports. <code dir="auto">hledgerConf</code>
+is the <a href="#hledger-config-file">hledger config file</a> path, or <code dir="auto">null</code>.</li>
+<li><code dir="auto">hledger</code>: <code dir="auto">{"path", "version"}</code>, or <code dir="auto">null</code> when status cannot locate hledger
+or read its version. Pressing Ctrl-C during the version check cancels
+<code dir="auto">status</code>. In JSON mode the command exits unsuccessfully without emitting
+a JSON object.</li>
 <li><code dir="auto">ledgerFile</code>: <code dir="auto">{"value", "exists"}</code> for <code dir="auto">LEDGER_FILE</code>, or <code dir="auto">null</code> when unset.</li>
 <li><code dir="auto">accounts</code>: one object per <code dir="auto">owner/bank/account</code> with statements:
 <code dir="auto">account</code>, <code dir="auto">statements</code>, <code dir="auto">years</code>, <code dir="auto">rulesFile</code> (the account’s default rules
 file, or <code dir="auto">null</code>), <code dir="auto">rulesCandidates</code>, <code dir="auto">statementsWithoutRules</code>,
-<code dir="auto">hooks</code> (<code dir="auto">preprocess</code>, <code dir="auto">construct</code>), <code dir="auto">journalsMissing</code>, <code dir="auto">journalsOutdated</code>.</li>
+<code dir="auto">hooks</code> (<code dir="auto">preprocess</code>, <code dir="auto">construct</code>), <code dir="auto">journalsMissing</code>, <code dir="auto">journalsOutdated</code>.
+For journals generated with CSV rules, status follows each <code dir="auto">include</code>
+relative to the rules file that contains it, including nested includes.
+A shared rules file newer than the journal counts toward <code dir="auto">journalsOutdated</code>.
+A missing or unreadable include, or an include cycle, also marks the journal
+outdated. Fix the rules if needed, then run <code dir="auto">hledger-flow import</code>.</li>
 <li><code dir="auto">misplaced</code>: <code dir="auto">{"path", "suggestion"}</code> for statement files import will never read.</li>
 <li><code dir="auto">manualJournals</code>: the number of <code dir="auto">_manual_</code> journals.</li>
 <li><code dir="auto">allYearsJournalExists</code>: whether import has created <code dir="auto">all-years.journal</code>.</li>
@@ -417,7 +461,15 @@ when the step isn’t a single command, such as moving files.</li>
 whenever it could inspect the ledger, even when it found problems.</p>
 <p>You can run the suggested command from the directory where you requested
 status. Commands use PowerShell syntax on Windows and POSIX shell syntax on
-macOS and Linux. Status recommends a full import when conversion inputs have
+macOS and Linux.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="paths-in-your-home-folder">Paths in your home folder</h2><a class="sl-anchor-link" href="#paths-in-your-home-folder"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Paths in your home folder”</span></a></div>
+<p>Status, init, import and report show paths in your home folder as <code dir="auto">~</code>, such
+as <code dir="auto">~/finances</code>. In commands to paste they write the home folder as <code dir="auto">$HOME</code>,
+which the shell expands where a quoted <code dir="auto">~</code> wouldn’t, such as
+<code dir="auto">export LEDGER_FILE="$HOME/finances/all-years.journal"</code>. A path whose rest
+contains a character that is special inside double quotes, such as <code dir="auto">$</code>,
+appears in full instead. <code dir="auto">status --json</code> always gives full paths, and
+hledger’s own messages are shown as hledger printed them. Status recommends a full import when conversion inputs have
 changed, generated files have lost their source statements, or journal
 includes need updating.</p>
 </div>
@@ -430,12 +482,12 @@ includes need updating.</p>
 		
 	</div>
 	<div class="pagination-links print:hidden astro-b5raizh3" dir="ltr">
-	<a href="/tutorial/part-3/" rel="prev" class="astro-b5raizh3">
+	<a href="/tutorial/part-5/" rel="prev" class="astro-b5raizh3">
 		<svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>
 		<span class="astro-b5raizh3">
 			Previous
 			<br class="astro-b5raizh3">
-			<span class="link-title astro-b5raizh3">Part 3: Adding more statements</span>
+			<span class="link-title astro-b5raizh3">Part 5: The last resort</span>
 		</span>
 	</a>
 	<a href="/reference/input-files/" rel="next" class="astro-b5raizh3">

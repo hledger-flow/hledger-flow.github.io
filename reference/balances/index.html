@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0nihbii" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,17 +172,27 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first CSV statement</span>
+				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: An hledger report</span>
+				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: Adding more statements</span>
+				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
 				
 			</a>
 	</li>
@@ -425,7 +435,7 @@ the generated journal include file for that year.</p>
 <p>You need to edit this file for each account to specify the opening
 balance at the date of the first available transaction.</p>
 <p>An opening balance may look something like this:</p>
-<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2018-06-01 Savings Account Opening Balance</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">assets:Current:MyBank:Savings               $102.01</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">equity:Opening Balances:MyBank:Savings</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="2018-06-01 Savings Account Opening Balance    assets:Current:MyBank:Savings               $102.01    equity:Opening Balances:MyBank:Savings"><div></div></button></div></figure></div>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2018-06-01 Savings Account Opening Balance</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">assets:mybank:savings               $102.01</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">equity:opening/closing balances</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="2018-06-01 Savings Account Opening Balance    assets:mybank:savings               $102.01    equity:opening/closing balances"><div></div></button></div></figure></div>
 <div class="sl-heading-wrapper level-h2"><h2 id="a-note-of-caution-regarding-closing-balances">A Note of Caution Regarding Closing Balances</h2><a class="sl-anchor-link" href="#a-note-of-caution-regarding-closing-balances"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “A Note of Caution Regarding Closing Balances”</span></a></div>
 <p>When closing your balances it may result in some <code dir="auto">hledger</code> queries showing zero-values, or there could be issues with balance assertions.</p>
 <p>Please have a look at the upstream <code dir="auto">hledger</code> documentation on closing balances, e.g here:
@@ -438,7 +448,7 @@ named <code dir="auto">YEAR-closing.journal</code> in each account directory. Ex
 <p>If it exists the file will automatically be included at the end of the
 generated journal include file for that year.</p>
 <p>A closing balance may look something like this:</p>
-<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2018-06-01 Savings Account Closing Balance</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">assets:Current:MyBank:Savings               $-234.56 = $0.00</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">equity:Closing Balances:MyBank:Savings</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="2018-06-01 Savings Account Closing Balance    assets:Current:MyBank:Savings               $-234.56 = $0.00    equity:Closing Balances:MyBank:Savings"><div></div></button></div></figure></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2018-06-01 Savings Account Closing Balance</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">assets:mybank:savings               $-234.56 = $0.00</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">equity:opening/closing balances</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="2018-06-01 Savings Account Closing Balance    assets:mybank:savings               $-234.56 = $0.00    equity:opening/closing balances"><div></div></button></div></figure></div>
 <div class="sl-heading-wrapper level-h2"><h2 id="example-opening-and-closing-journal-files">Example Opening and Closing Journal Files</h2><a class="sl-anchor-link" href="#example-opening-and-closing-journal-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Example Opening and Closing Journal Files”</span></a></div>
 <p>As an example, assuming that the relevant year is <code dir="auto">2019</code> and
 <code dir="auto">hledger-flow</code> is about to generate

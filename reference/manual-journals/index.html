@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0nihbii" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,17 +172,27 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first CSV statement</span>
+				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: An hledger report</span>
+				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: Adding more statements</span>
+				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
 				
 			</a>
 	</li>
@@ -398,7 +408,15 @@ and <code dir="auto">_manual_/YYYY/post-import.journal</code> during import. You
 <code dir="auto">_manual_</code> directly under <code dir="auto">import</code>, an owner, a bank, or an account.
 Either file establishes that year’s include files, even when there are no
 statements for that year or no statements anywhere in the ledger.</p>
-<p>You can enter your own transactions manually into these files.</p>
+<p>Put a transaction shared by the whole household in a root journal such as
+<code dir="auto">import/_manual_/2019/post-import.journal</code>. After <code dir="auto">hledger-flow import</code>,
+run <code dir="auto">hledger-flow report</code>. The annual and monthly income statements and
+the balance sheet under <code dir="auto">reports/all/2019/</code> include that transaction,
+even with a single owner or a ledger made up entirely of root manual entries.
+If an owner is named <code dir="auto">all</code> (in any letter case), the aggregate reports go
+under <code dir="auto">reports/_all_/2019/</code>.</p>
+<p>For a transaction that belongs to John alone, use <code dir="auto">import/john/_manual_/2019/</code>
+so it appears in both John’s reports and the aggregate reports.</p>
 <p>You can run <code dir="auto">hledger-flow import --verbose</code> to see exactly which files
 are being looked for.</p>
 <p>As an example, assuming that the relevant year is <code dir="auto">2019</code> and

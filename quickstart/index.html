@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0nihbii" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,17 +172,27 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first CSV statement</span>
+				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: An hledger report</span>
+				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: Adding more statements</span>
+				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
 				
 			</a>
 	</li>
@@ -531,8 +541,10 @@ ledger. Scripts and AI agents can use <code dir="auto">hledger-flow status --jso
 <a href="/reference/status/#status-for-scripts-and-agents">status for scripts and agents</a>.
 The <a href="/tutorial/">step-by-step tutorial</a>
 explains each part in depth.</p>
-<p>On Windows, run <code dir="auto">chcp 65001</code> in your terminal before querying the journal
-with standalone hledger. Then run <code dir="auto">hledger -f all-years.journal bal</code>.
+<p>On Windows, run <code dir="auto">chcp 65001</code> before querying the journal with standalone
+hledger. This sets the current terminal session to UTF-8 so currency
+symbols and accented letters display correctly. Then run
+<code dir="auto">hledger -f all-years.journal bal</code>.
 In PowerShell, set <code dir="auto">LEDGER_FILE</code> with
 <code dir="auto">$env:LEDGER_FILE = (Resolve-Path .\all-years.journal).Path</code>.</p>
 <p>Rules-based imports work on all three platforms. On native Windows you can

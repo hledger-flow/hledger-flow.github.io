@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0nihbii" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,17 +172,27 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first CSV statement</span>
+				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: An hledger report</span>
+				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: Adding more statements</span>
+				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
 				
 			</a>
 	</li>
@@ -384,9 +394,9 @@
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><p>When you run hledger-flow in a terminal, it checks GitHub for a newer release.
-<code dir="auto">status</code> tells you whether you’re up to date. <code dir="auto">import</code> and <code dir="auto">report</code> mention a
-new release only when one is available, and never wait for the check.
+								<div class="sl-markdown-content"><p>Interactive <code dir="auto">import</code> and <code dir="auto">report</code> commands check GitHub for a newer release
+in the background. If a new release is available by the time the command
+finishes, it prints an upgrade notice. <code dir="auto">status</code> runs entirely locally.
 Homebrew installs get the upgrade command; others get a link to the
 <a href="https://github.com/apauley/hledger-flow/releases/latest">latest release</a>.</p>
 <p>Set <code dir="auto">HLEDGER_FLOW_NO_UPDATE_CHECK=1</code> to turn the check off.</p>
