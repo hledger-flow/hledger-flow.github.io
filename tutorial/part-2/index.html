@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -473,11 +483,12 @@ as text files:</p>
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2016-05-13 BAOBAB BOOKS ONLINE</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">liabilities:kudu:creditcard                R-455.00</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">expenses:unknown                            R455.00</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2016-05-21 TSHIPISE HOT SPRINGS</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">liabilities:kudu:creditcard               R-2450.00</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">expenses:unknown                           R2450.00</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2016-05-27 PAFURI PHARMACY</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">liabilities:kudu:creditcard                R-189.50</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">expenses:unknown                            R189.50</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="hledger --file import/gawie/all-years.journal --period 2016 print unknown2016-03-12 BAOBAB BOOKS ONLINE    liabilities:kudu:creditcard                R-389.00    expenses:unknown                            R389.002016-03-26 PAFURI PHARMACY    liabilities:kudu:creditcard                R-214.90    expenses:unknown                            R214.902016-05-13 BAOBAB BOOKS ONLINE    liabilities:kudu:creditcard                R-455.00    expenses:unknown                            R455.002016-05-21 TSHIPISE HOT SPRINGS    liabilities:kudu:creditcard               R-2450.00    expenses:unknown                           R2450.002016-05-27 PAFURI PHARMACY    liabilities:kudu:creditcard                R-189.50    expenses:unknown                            R189.50"><div></div></button></div></figure></div>
-<p>Each month, the routine is the same: copy in the new statements, run
-<code dir="auto">hledger-flow import</code>, add <code dir="auto">if</code> blocks for whatever turned up in
-<code dir="auto">unknown-transactions.txt</code>, and run <code dir="auto">hledger-flow report</code>.</p>
+<p>Each month, Gawie files the new statements, runs <code dir="auto">hledger-flow import</code> and
+then <code dir="auto">hledger-flow report</code>. He can leave unfamiliar purchases in
+<code dir="auto">expenses:unknown</code> until he recognises them. After adding a category rule,
+he runs import again to rebuild the entries, then report to refresh his list.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="try-it-yourself">Try it yourself</h2><a class="sl-anchor-link" href="#try-it-yourself"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Try it yourself”</span></a></div>
-<p>Classify the three transactions that are left: the pharmacy as
+<p>Classify the five purchases from the three remaining merchants: the pharmacy as
 <code dir="auto">expenses:health</code>, and the books and the weekend at the hot springs as
 <code dir="auto">expenses:fun</code>. Then run <code dir="auto">hledger-flow import</code> and <code dir="auto">hledger-flow report</code>.</p>
 <details>

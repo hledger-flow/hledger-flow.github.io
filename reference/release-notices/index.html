@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -394,12 +404,26 @@
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><p>Interactive <code dir="auto">import</code> and <code dir="auto">report</code> commands check GitHub for a newer release
-in the background. If a new release is available by the time the command
-finishes, it prints an upgrade notice. <code dir="auto">status</code> runs entirely locally.
-Homebrew installs get the upgrade command; others get a link to the
-<a href="https://github.com/apauley/hledger-flow/releases/latest">latest release</a>.</p>
-<p>Set <code dir="auto">HLEDGER_FLOW_NO_UPDATE_CHECK=1</code> to turn the check off.</p>
+								<div class="sl-markdown-content"><p>Interactive <code dir="auto">import</code> and <code dir="auto">report</code> share the latest stable release they have
+seen on GitHub. They save it in <code dir="auto">.hledger-flow/cache/release-check.json</code> at
+the ledger root, including when you run an ordinary import. The cache uses
+the same Git ignore file as <a href="/reference/incremental-import/">incremental import</a>.</p>
+<p>A successful check lasts 24 hours. After that, the next interactive import
+or report refreshes it in the background. If GitHub is unavailable, the
+command can still show a previously discovered upgrade and waits 15 minutes
+before retrying. On the first check, a command allows up to a quarter of a
+second at exit for a result to arrive. Once a release is cached, commands
+can show it immediately.</p>
+<p>Interactive <code dir="auto">status</code> (or just <code dir="auto">hledger-flow</code> inside the ledger) reads the
+saved release. It never contacts GitHub or creates a cache. Once you upgrade,
+the notice disappears as soon as the installed version matches or exceeds
+the saved version.</p>
+<p>Notices go to standard error when both output streams are terminals.
+Homebrew installs get the upgrade command when the tap has been confirmed
+to offer that release. Other notices link to the
+<a href="https://github.com/apauley/hledger-flow/releases/latest">latest release</a>.
+<code dir="auto">status --json</code> and <code dir="auto">status --rules-template</code> skip notices.</p>
+<p>Set <code dir="auto">HLEDGER_FLOW_NO_UPDATE_CHECK=1</code> to disable release checks and notices.</p>
 </div>
 								<footer class="sl-flex astro-ddtxxk7k">
 	<div class="meta sl-flex astro-ddtxxk7k">

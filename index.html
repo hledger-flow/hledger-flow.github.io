@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>hledger-flow: rebuild your ledger from bank statements</title>
-    <meta name="description" content="hledger-flow files bank statements by owner, bank, account and year, converts them with hledger CSV rules, and rebuilds every journal when your rules change.">
+    <title>hledger-flow: rebuild your hledger journals from your original statements</title>
+    <meta name="description" content="A command-line workflow for hledger. It files your statements in a fixed folder layout, keeps them as permanent input, and rebuilds reproducible, auditable journals from them.">
     <link rel="canonical" href="https://hledger-flow.github.io/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="hledger-flow: rebuild your ledger from bank statements">
-    <meta property="og:description" content="hledger-flow files bank statements by owner, bank, account and year, converts them with hledger CSV rules, and rebuilds every journal when your rules change.">
+    <meta property="og:title" content="hledger-flow: rebuild your hledger journals from your original statements">
+    <meta property="og:description" content="A command-line workflow for hledger. It files your statements in a fixed folder layout, keeps them as permanent input, and rebuilds reproducible, auditable journals from them.">
     <script>
       // Follow the theme chosen in the docs (Starlight stores it here).
       try {
@@ -17,7 +17,7 @@
       } catch {}
     </script>
   <link rel="stylesheet" href="/_astro/tokens.AfKs01Lm.css">
-<link rel="stylesheet" href="/_astro/index.CKEU3KEz.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head>
+<link rel="stylesheet" href="/_astro/index.B8T2qUDf.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <header class="top">
@@ -32,14 +32,34 @@
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-text">
-          <h1 id="hero-title">File your bank statements. Rebuild your ledger from them, any time.</h1>
-          <div>
+        <h1 id="hero-title"><span>Keep every statement.</span> <span>Rebuild your journals from them.</span></h1>
+
+        <figure class="map" aria-labelledby="map-caption">
+          <picture>
+            <source media="(min-width: 64rem)" type="image/avif" srcset="/images/statement-river-1136.avif 1136w, /images/statement-river-1704.avif 1704w, /images/statement-river-2272.avif 2272w" sizes="(min-width: 76rem) 71rem, calc(100vw - 5rem)">
+            <source media="(min-width: 64rem)" type="image/webp" srcset="/images/statement-river-1136.webp 1136w, /images/statement-river-1704.webp 1704w, /images/statement-river-2272.webp 2272w" sizes="(min-width: 76rem) 71rem, calc(100vw - 5rem)">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="2272" height="1583" fetchpriority="high" alt="An engraved river map titled hledger-flow, a workflow for hledger. Streams from a bank statement, brokerage trades and a wallet export cross a dashed line marked “On your computer”, pass signposts for their import folders and meet at a wall marked hledger-flow import. The water runs into an open ledger titled “Your combined ledger, all-years.journal”.">
+          </picture>
+          <figcaption id="map-caption">
+            Each statement stays in its account’s <code>1-in/</code> folder. <code>hledger-flow import</code> converts
+            it to a journal and links every journal into <code>all-years.journal</code>, the file hledger reads.
+          </figcaption>
+        </figure>
+
+        <div class="hero-copy">
           <p class="lead">
-            hledger-flow keeps each statement in a folder for its owner, bank, account and year. It converts every
-            statement with <a href="https://hledger.org/">hledger</a>’s CSV rules and includes the results in one
-            <code>all-years.journal</code>. Improve a rule, import again, and years of transactions are reclassified.
-            <code>git diff</code> shows exactly what changed.
+            hledger-flow is a command-line workflow for <a href="https://hledger.org/">hledger</a>, the plain-text
+            accounting tool. hledger keeps your accounts in journals: human-readable text files you can open in any
+            editor, in a format that hledger reads and that <a href="/guides/ledger/">Ledger</a> and other plain-text
+            accounting tools largely share.
+          </p>
+          <p class="lead">
+            hledger-flow is opinionated about where files live. You save each statement, exactly as your bank issued
+            it, in a folder for its owner, institution, account and year. <code>hledger-flow import</code> converts
+            each one with your hledger rules, or a script for formats rules can’t read, and links the journals
+            through <code>all-years.journal</code>. The statements stay as permanent input, so every journal can be
+            rebuilt from its source and every entry traced to the statement it came from.
+            <a href="#choose-title">How does it compare with plain hledger?</a>
           </p>
           <div class="actions">
             <a class="button" href="/quickstart/">Read the quick start</a>
@@ -47,7 +67,6 @@
               <code id="brew">brew install ferntrail/tap/hledger-flow</code>
               <button type="button" data-copy="brew" aria-label="Copy the Homebrew install command">Copy</button>
             </div>
-          </div>
           </div>
         </div>
 
@@ -60,7 +79,9 @@
             <li style="--step: 1">
               <span class="where yours">import/mybank.rules</span>
               <pre>fields date, description, amount
+currency $
 account1 assets:john:mybank:checking
+account2 expenses:misc
 
 if City Rail
   account2 expenses:transport</pre>
@@ -80,21 +101,85 @@ if City Rail
             </li>
             <li style="--step: 4">
               <span class="where yours">hledger bal expenses</span>
-              <pre>       $4.80  expenses:misc
-      $62.50  expenses:transport
+              <pre>              $62.50  expenses:transport
 --------------------
-      $67.30</pre>
+              $62.50</pre>
             </li>
           </ol>
-          <figcaption id="sheet-caption">One line of a March statement, from the downloaded CSV through the generated includes to a report.</figcaption>
+          <figcaption id="sheet-caption">One March purchase, from the downloaded CSV through the generated includes to an expense report.</figcaption>
         </figure>
+      </section>
+
+      <section aria-labelledby="account-title">
+        <div class="prose">
+          <h2 id="account-title">A place for the account your other tools leave out</h2>
+          <p>
+            If your finance app doesn’t support a particular broker or wallet, that account disappears from your
+            reports. In plain text, you can always record it. Read a trade history with hledger’s CSV rules, write a
+            script for an unusual export, or enter a loan to a friend by hand in a
+            <a href="/reference/manual-journals/">manual journal</a>. All three appear on the same balance sheet. To see
+            investments at market value, add the <a href="/reference/price-files/">prices</a> you want hledger to use.
+          </p>
+          <p>
+            hledger-flow makes that work repeatable. Keep the original statements, exactly as your institutions issued
+            them, and the rules that read them. Years later, in a tax audit say, you can show where any transaction came
+            from. When you improve a category, run <code>hledger-flow import</code> again and every statement that uses
+            the rule is converted again, in every year, with no search-and-replace through old entries. If you keep the
+            generated journals in Git, you can review which postings changed before you commit.
+          </p>
+        </div>
+      </section>
+
+      <section class="rebuild" aria-labelledby="rebuild-title">
+        <div class="prose">
+          <h2 id="rebuild-title">Change a rule, rebuild every year</h2>
+          <p>
+            City Rail purchases have been landing in <code>expenses:misc</code>. Add a rule to
+            <code>import/mybank.rules</code> and run <code>hledger-flow import</code> from the ledger root. Every City
+            Rail purchase, in every year you’ve imported, moves to transport.
+          </p>
+        </div>
+        <div class="diffs">
+          <figure>
+            <figcaption><code>import/mybank.rules</code></figcaption>
+            <pre><span class="ctx"> account1 assets:john:mybank:checking
+ account2 expenses:misc</span>
+<span class="add">+
++if City Rail
++  account2 expenses:transport</span></pre>
+          </figure>
+          <figure>
+            <figcaption><code>git diff -- import/</code></figcaption>
+            <pre><span class="ctx"> 2025-03-14 City Rail monthly pass
+     assets:john:mybank:checking         $-62.50</span>
+<span class="del">-    expenses:misc                        $62.50</span>
+<span class="add">+    expenses:transport                   $62.50</span></pre>
+          </figure>
+        </div>
+        <p class="prose after">
+          Handwritten transactions live in <a href="/reference/manual-journals/">manual journals</a>, so a rebuild never
+          touches them.
+        </p>
+      </section>
+
+      <section aria-labelledby="private-title">
+        <div class="prose">
+          <h2 id="private-title">The combined view belongs to you</h2>
+          <p>
+            hledger and hledger-flow run on your computer. You can produce a household balance sheet without connecting
+            your bank to your broker or uploading either statement to an aggregation service. Public blockchain
+            transactions remain public. The link between a wallet, your other accounts and your notes exists only in
+            your own files.
+          </p>
+        </div>
       </section>
 
       <section class="layout" aria-labelledby="layout-title">
         <div class="prose">
-          <h2 id="layout-title">A folder for every statement</h2>
+          <h2 id="layout-title">Where statements and journals live</h2>
           <p>
-            The folders tell hledger-flow who owns an account, where it’s held and which year a statement covers.
+            The folders tell hledger-flow who owns an account, where it’s held and which year you filed it under.
+            The statement and its generated journal share a filename stem, so you can find the source of an entry.
             You add the statements, rules and manual journals. hledger-flow writes the rest, so you can delete every
             generated file and get the same ledger back.
           </p>
@@ -115,7 +200,7 @@ if City Rail
                 <span></span>
               </li><li class="yours">
                 <code>  mybank.rules</code>
-                <a href="/go/rules-files/">CSV rules for every mybank statement</a>
+                <a href="/go/rules-files/">Default CSV rules for mybank</a>
               </li><li class="yours">
                 <code>  john/</code>
                 <span>Owner</span>
@@ -144,85 +229,66 @@ if City Rail
         </ul>
       </section>
 
-      <section class="rebuild" aria-labelledby="rebuild-title">
-        <div class="prose">
-          <h2 id="rebuild-title">Change a rule, rebuild every year</h2>
-          <p>
-            City Rail purchases have been landing in <code>expenses:misc</code>. Add a rule to
-            <code>import/mybank.rules</code> and run <code>hledger-flow import</code>. Every statement that uses those
-            rules is converted again, in every year you’ve imported.
-          </p>
-        </div>
-        <div class="diffs">
-          <figure>
-            <figcaption><code>import/mybank.rules</code></figcaption>
-            <pre><span class="ctx"> if Salary
-   account2 income:salary</span>
-<span class="add">+
-+if City Rail
-+  account2 expenses:transport</span></pre>
-          </figure>
-          <figure>
-            <figcaption><code>git diff -- import/</code></figcaption>
-            <pre><span class="ctx"> 2025-03-14 City Rail monthly pass
-     assets:john:mybank:checking         $-62.50</span>
-<span class="del">-    expenses:misc                        $62.50</span>
-<span class="add">+    expenses:transport                   $62.50</span></pre>
-          </figure>
-        </div>
-        <p class="prose after">
-          Handwritten transactions live in <a href="/reference/manual-journals/">manual journals</a>, so a rebuild never
-          touches them.
-        </p>
-      </section>
-
       <section class="choose" aria-labelledby="choose-title">
         <div class="prose">
           <h2 id="choose-title">hledger-flow or plain hledger?</h2>
           <p>
-            All three read your statements with the same hledger rules files. They differ in which file is your
-            record, and in what happens when you improve a rule.
+            There are many ways to keep your finances with hledger, and
+            <a href="https://hledger.org/workflows.html">hledger’s workflows page</a> describes them. Three of them handle
+            bank statements in quite different ways.
           </p>
         </div>
         <div class="columns">
           <div>
             <h3><code>hledger import</code></h3>
-            <p class="record">The journal is your record.</p>
-            <p>
-              Each import converts only the transactions it hasn’t seen before and appends them to your journal. From
-              then on they’re yours to edit, split or annotate by hand. A better rule affects future imports only.
-              Overlapping downloads such as “the last 90 days” are fine, so it suits frequent, small downloads. See
-              <a href="https://hledger.org/dev/hledger.html#import">hledger’s import guide</a>.
-            </p>
+            <ul role="list">
+              <li>Your journal is the primary record.</li>
+              <li>You classify, split and annotate entries by editing the journal.</li>
+              <li>A better rule changes future imports only.</li>
+              <li>
+                Overlapping downloads are fine. hledger skips entries it has already imported, as long as their
+                dates and same-day order stay stable.
+              </li>
+            </ul>
+            <p><a href="https://hledger.org/hledger.html#import">How hledger import works</a></p>
           </div>
           <div>
-            <h3>Include the CSV</h3>
-            <p class="record">The CSV is your record, converted on every read.</p>
-            <p>
-              Write <code>include checking.csv</code> in your journal, with <code>checking.csv.rules</code> beside it.
-              hledger converts the CSV whenever it reads the journal. There are no generated files, and a rule change
-              applies to your whole history at once. You fix transactions in the rules, not by hand. It suits a few
-              large, regular files whose rules keep changing. See
-              <a href="https://hledger.org/dev/hledger.html#include-directive">hledger’s include directive</a>.
-            </p>
+            <h3>Read the CSV directly</h3>
+            <ul role="list">
+              <li>The CSV files are the record. Nothing is generated.</li>
+              <li>You classify by editing the rules.</li>
+              <li>A better rule applies the next time hledger reads the file.</li>
+              <li>
+                Suits a few files you name yourself, as in <code>hledger -f checking.csv bal</code>. The hledger
+                1.99 previews can also <code>include</code> a CSV in a journal.
+              </li>
+            </ul>
+            <p><a href="https://hledger.org/hledger.html#csv">Reading CSV with hledger</a></p>
           </div>
           <div>
             <h3>hledger-flow</h3>
-            <p class="record">The statements are your record. The journals are build output.</p>
-            <p>
-              Every statement stays as your bank issued it, filed by owner, account and year, so years later, in a tax
-              audit say, you can show where each transaction came from. Change your mind about a category, edit one
-              rules file, and every journal in every year is regenerated the same way, with no search-and-replace
-              through old entries. The journals are written out, so <code>git diff</code> shows what each change did
-              before you commit. Statements mustn’t overlap, because each is converted on its own.
-            </p>
+            <ul role="list">
+              <li>The original statements are the primary record. Journals are rebuilt from them.</li>
+              <li>You classify by editing rules files.</li>
+              <li>A better rule rebuilds every journal that uses it, in every year.</li>
+              <li>
+                A fixed folder for each owner, institution, account and year keeps years of statements maintainable.
+                An account’s statements mustn’t overlap, or a purchase appears twice.
+              </li>
+            </ul>
+            <p><a href="/quickstart/">Quick start</a></p>
           </div>
         </div>
         <p class="prose after">
-          In short: if you’d rather edit transactions than rules, use <code>hledger import</code>. If you have a few CSV
-          files and want the fewest moving parts, include them. Choose hledger-flow when your statements are records to
-          keep for years, and you want to reclassify, add detail or adopt a bank’s new format at any time, with every
-          year staying consistent and every change open to review.
+          Choose <code>hledger import</code> if your journal is your primary record and you want to edit it by hand.
+          Choose hledger-flow if you want to generate your journals from statements exactly as they came from the
+          source, classify by editing rules, and keep years of files in a structure that stays maintainable and
+          auditable.
+        </p>
+        <p class="prose after">
+          hledger-flow grew out of scripts written while using Dmitry Astapov’s Full-fledged hledger, whose wiki
+          explains <a href="https://github.com/adept/full-fledged-hledger/wiki/Key-principles-and-practices">the ideas
+          behind this approach</a> in depth.
         </p>
       </section>
 
@@ -230,11 +296,11 @@ if City Rail
         <h2 id="install-title">Install</h2>
         <dl>
           <div>
-            <dt>Homebrew <span>macOS, Linux</span></dt>
+            <dt>Homebrew <span>Linux, macOS</span></dt>
             <dd><code>brew install ferntrail/tap/hledger-flow</code></dd>
           </div>
           <div>
-            <dt>Release download <span>Windows, macOS, Linux</span></dt>
+            <dt>Release download <span>Linux, macOS, Windows</span></dt>
             <dd><a href="/quickstart/#download-a-release">Choose the archive for your system</a></dd>
           </div>
           <div>

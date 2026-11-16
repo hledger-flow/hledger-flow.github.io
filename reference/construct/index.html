@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -412,8 +422,8 @@ are needed.</p>
 <p><code dir="auto">hledger-flow</code> will call your <code dir="auto">construct</code> script with 5 positional
 parameters:</p>
 <ol>
-<li>The path to the input statement, e.g.
-<code dir="auto">import/john/mybank/savings/1-in/2018/123456789_2018-06-30.csv</code></li>
+<li>The path to the preprocessed CSV if one is in use, otherwise the original
+statement in <code dir="auto">1-in/&lt;year&gt;/</code></li>
 <li>A “-” (indicating that output should be sent to <code dir="auto">stdout</code>)</li>
 <li>The name of the bank, e.g. <code dir="auto">mybank</code></li>
 <li>The name of the account, e.g. <code dir="auto">savings</code></li>
@@ -430,8 +440,16 @@ should produce the same result.</li>
 </ul>
 <p>hledger-flow replaces the journal in <code dir="auto">3-journal/&lt;year&gt;/</code> only after both
 the construct script and hledger finish successfully. If either fails, the
-previous journal stays in place.</p>
-<p>You can still use <code dir="auto">stderr</code> in your construct script for any other output that you may want to see.</p>
+previous journal stays in place. This conversion runs hledger with
+<code dir="auto">--ignore-assertions</code>. To check balance assertions with the opening balances
+and other statements present, run <code dir="auto">hledger -f all-years.journal check</code> after import.</p>
+<p>You can still use <code dir="auto">stderr</code> in your construct script for any other output that you may want to see.
+hledger-flow shows it once the script finishes.</p>
+<p><code dir="auto">hledger-flow import --verbose</code> shows each run as one pipeline, ready to paste
+into a shell at the base directory: your script, then the hledger command that reads its output.
+The pipeline names the final journal in <code dir="auto">3-journal/&lt;year&gt;/</code>, so a pasted command
+writes that journal directly. If the script or hledger exits with an error,
+import stops with that program’s exit code and shows its error output under its name.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="stability">Stability</h2><a class="sl-anchor-link" href="#stability"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stability”</span></a></div>
 <p>Stable and tested.</p>
 </div>

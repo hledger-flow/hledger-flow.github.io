@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -359,7 +369,7 @@
 		<a href="#more-about-input-files" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">More About Input Files</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
-		<a href="#incremental-imports" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Incremental imports</span></a>
+		<a href="#timestamp-only-imports" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Timestamp-only imports</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
 		<a href="#generated-files-and-recovery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Generated Files and Recovery</span></a>
@@ -388,7 +398,7 @@
 		<a href="#more-about-input-files" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">More About Input Files</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
-		<a href="#incremental-imports" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Incremental imports</span></a>
+		<a href="#timestamp-only-imports" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Timestamp-only imports</span></a>
 		
 	</li><li style="--depth: 0;" class="astro-jugkfwgx">
 		<a href="#generated-files-and-recovery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Generated Files and Recovery</span></a>
@@ -418,15 +428,17 @@
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><p>Your input files will probably be CSV files with a line for each
-transaction, although other file types will work fine if you use a
-<code dir="auto">preprocess</code> or a <code dir="auto">construct</code> script that can read them. These scripts
-are explained later.</p>
-<p>We mostly use conventions based on a predefined directory structure for
-your input statements.</p>
-<p>For example, assuming you have a <code dir="auto">savings</code> account at <code dir="auto">mybank</code>, you’ll
-put your first CSV statement here:
-<code dir="auto">import/john/mybank/savings/1-in/2018/123456789_2018-06-30.csv</code>.</p>
+								<div class="sl-markdown-content"><p>Save each statement in <code dir="auto">import/&lt;owner&gt;/&lt;bank&gt;/&lt;account&gt;/1-in/&lt;year&gt;/</code>.
+For example, John’s June savings statement might be
+<code dir="auto">import/john/mybank/savings/1-in/2018/123456789_2018-06-30.csv</code>.
+Import reads every visible file directly in that year folder as a statement.
+For a format hledger’s CSV rules can’t read, supply a
+<a href="/reference/preprocess/">preprocess</a> or <a href="/reference/construct/">construct</a> script.</p>
+<p>Use non-overlapping exports for each account. If the same purchase appears in
+two statements, it gets two journal entries. When a bank issues a corrected
+statement, replace the original at the same path and run <code dir="auto">hledger-flow import</code>.
+For a transfer between two accounts, keep both statements and
+<a href="/guides/transfers/">classify the two sides of the transfer</a>.</p>
 <p>An owner, bank, or account can itself be named <code dir="auto">import</code>. For example,
 <code dir="auto">import/john/mybank/import/1-in/2018/april.csv</code> belongs to John’s account
 named <code dir="auto">import</code> at <code dir="auto">mybank</code>. Run <code dir="auto">hledger-flow import</code> and <code dir="auto">hledger-flow status</code>
@@ -437,47 +449,46 @@ part of the household finances:
 <p>Parallel import converts one statement per core at a time, and starts another
 as soon as a worker finishes. Use <code dir="auto">--batch-size N</code> to set how many run at once
 or <code dir="auto">--sequential</code> to run one at a time.</p>
+<p>Run <code dir="auto">hledger-flow import --verbose</code> to see where import looks for each
+statement’s scripts, rules file and include files, and the exact commands it
+runs. You can paste a command into a shell at the ledger root. If you started
+import elsewhere, the command first changes to that working directory so scripts
+can resolve relative paths and hledger can find the same config. Paths below the
+working directory start with <code dir="auto">./</code>. Each statement’s lines appear together once
+it’s done. With <code dir="auto">--sequential</code>, they appear as import works.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="more-about-input-files">More About Input Files</h2><a class="sl-anchor-link" href="#more-about-input-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “More About Input Files”</span></a></div>
-<p>All files and directories under the <code dir="auto">import</code> directory are related to the
-automatic importing and classification of transactions.</p>
-<p>The directory directly under <code dir="auto">import</code> is meant to indicate the owner or
-custodian of the accounts below it. It mostly has an impact on
-reporting. You may want to have separate reports for <code dir="auto">import/mycompany</code>
-and <code dir="auto">import/personal</code>.</p>
-<p>You can create an owner directory before its first statement arrives.
-<code dir="auto">hledger-flow report</code> skips that owner until import creates its
-<code dir="auto">all-years.journal</code> and continues generating reports for the other owners.</p>
-<p>Below the directory for the owner we can indicate where an account is
-held. For a bank account you may choose to name it <code dir="auto">import/john/mybank</code>.</p>
-<p>If your underground bunker filled with gold has CSV statements linked to
-it, then you can absolutely create <code dir="auto">import/john/secret-treasure-room</code>.</p>
-<p>Under the directory for the financial institution, you’ll have a
-directory for each account at that institution, e.g.
-<code dir="auto">import/mycompany/bigbankinc/customer-deposits</code> and
-<code dir="auto">import/mycompany/bigbankinc/expense-account</code>.</p>
-<p>Next you’ll create a directory named <code dir="auto">1-in</code>. This is to distinguish it
-from <code dir="auto">2-preprocessed</code> and <code dir="auto">3-journal</code> which will be auto-generated
-later.</p>
-<p>Under <code dir="auto">1-in</code> you’ll create a directory for the year, e.g. <code dir="auto">2018</code>, and
-within that you can copy the statements for that year:
-<code dir="auto">import/john/mybank/savings/1-in/2018/123456789_2018-06-30.csv</code></p>
+<p>The owner folder groups accounts for reporting. For example, filing statements
+under <code dir="auto">import/mycompany/</code> and <code dir="auto">import/personal/</code> gives you reports for the
+company, for your personal accounts and for both together. You can create an
+owner folder in advance. Reporting skips that owner until import creates its
+<code dir="auto">all-years.journal</code>.</p>
+<p>Within each account, <code dir="auto">1-in/</code> holds your originals, <code dir="auto">2-preprocessed/</code> holds
+any CSVs written by a preprocess script, and <code dir="auto">3-journal/</code> holds the journals.
+All three use the same year and filename stem.</p>
 <p>Keep the filenames your bank provides. For example, <code dir="auto">April [1].csv</code>
 and <code dir="auto">April 1.csv</code> can sit in the same year directory. Import treats the
 brackets literally and includes each statement’s transactions once. If an
 earlier import duplicated one statement and omitted the other, run
 <code dir="auto">hledger-flow import</code> to rebuild the journals from both files.</p>
-<div class="sl-heading-wrapper level-h2"><h2 id="incremental-imports">Incremental imports</h2><a class="sl-anchor-link" href="#incremental-imports"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Incremental imports”</span></a></div>
+<p><span id="incremental-imports"></span></p>
+<div class="sl-heading-wrapper level-h2"><h2 id="timestamp-only-imports">Timestamp-only imports</h2><a class="sl-anchor-link" href="#timestamp-only-imports"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Timestamp-only imports”</span></a></div>
 <p><code dir="auto">hledger-flow import --new-files-only</code> compares each generated file’s
 modification time with its source. It rebuilds a preprocessed CSV or journal
 when its source is newer, even if the two timestamps differ by only a
 fraction of a second. Equal timestamps count as up to date. If you replace
 a statement and preserve its timestamp, run <code dir="auto">hledger-flow import</code> to force
-a rebuild.</p>
+a rebuild. Also use a full import after changing rules or hooks. This flag
+compares only the statement, cached CSV and journal timestamps. To track
+content changes in statements, rules and nested includes, see
+<a href="/reference/incremental-import/">Incremental import</a>.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="generated-files-and-recovery">Generated Files and Recovery</h2><a class="sl-anchor-link" href="#generated-files-and-recovery"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Generated Files and Recovery”</span></a></div>
 <p>When an import or report fails, the command finishes writing its queued
 diagnostics before it exits, even if a pipe consumer reads slowly. To save
 the failure message for inspection, capture standard error, for example
 with <code dir="auto">hledger-flow import 2&gt;import-errors.log</code>.</p>
+<p>On Windows, you can paste the displayed command into PowerShell at the ledger
+root. If <code dir="auto">USERPROFILE</code> differs from the Windows profile directory, the
+command uses absolute paths for files outside the ledger so they still resolve.</p>
 <p><code dir="auto">1-in</code> is the source of truth. Both <code dir="auto">2-preprocessed</code> and <code dir="auto">3-journal</code>
 contain generated output; user-supplied files in those stages are not
 supported. Use <a href="/reference/manual-journals/">manually managed journals</a>
@@ -526,8 +537,8 @@ from source-backed journals and supported manual files, so orphaned
 journals outside the cleanup scope are also excluded from the ledger.
 Obsolete generated year and account indexes are rewritten as empty ledgers.
 Manual-only and empty imports succeed without dummy input files.</p>
-<p>Only the documented stage/year layout is processed. Unrelated files such
-as PDFs are left untouched; hidden files and directories are ignored.
+<p>Import ignores hidden files and directories. Keep supporting documents such
+as PDF receipts outside <code dir="auto">1-in/&lt;year&gt;/</code> unless a hook converts them.
 Deleting an input can therefore remove its transactions from the ledger,
 but does not permanently delete the generated files.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="stability">Stability</h2><a class="sl-anchor-link" href="#stability"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stability”</span></a></div>
@@ -552,12 +563,12 @@ fairly extensively, I don’t expect a need for it to change.</p>
 			<span class="link-title astro-b5raizh3">Status and next steps</span>
 		</span>
 	</a>
-	<a href="/reference/rules-files/" rel="next" class="astro-b5raizh3">
+	<a href="/reference/incremental-import/" rel="next" class="astro-b5raizh3">
 		<svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>
 		<span class="astro-b5raizh3">
 			Next
 			<br class="astro-b5raizh3">
-			<span class="link-title astro-b5raizh3">Rules files</span>
+			<span class="link-title astro-b5raizh3">Incremental import</span>
 		</span>
 	</a>
 </div>

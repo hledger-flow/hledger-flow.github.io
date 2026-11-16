@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" aria-current="page" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -415,7 +425,7 @@
 								<div class="sl-markdown-content"><p>For most downloaded bank CSVs, an hledger rules file handles the whole
 conversion. Use <code dir="auto">fields</code> to map columns, <code dir="auto">skip</code> to ignore headers, <code dir="auto">if</code> to
 classify matching transactions, and <code dir="auto">include</code> to share rules across accounts.
-See <a href="https://hledger.org/1.52/hledger.html#csv">hledger’s CSV rules reference</a>.</p>
+See <a href="https://hledger.org/hledger.html#csv-rules-cheatsheet">hledger’s CSV rules cheatsheet</a>.</p>
 <p>The upcoming hledger 2 release also has experimental rules functions,
 available since preview 1.99.6. For example, if you named a CSV column
 <code dir="auto">memo</code>, you can use <code dir="auto">description %{replace(%memo, "^POS +", "")}</code> to strip a
@@ -436,11 +446,9 @@ path. Each column gets a unique field name in header order. For example,
 <code dir="auto">Reference_2,Reference,Reference</code> becomes <code dir="auto">reference_2, reference, reference_3</code>
 because the first column already uses <code dir="auto">reference_2</code>.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="statement-specific-rules-files">Statement-specific Rules Files</h2><a class="sl-anchor-link" href="#statement-specific-rules-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Statement-specific Rules Files”</span></a></div>
-<p>What happens if some of the statements for an account has a different
-format than the others?</p>
-<p>This can happen if you normally get your statements directly from your
-bank, but some statements you had to download from somewhere else, like
-Mint, because your bank is being daft with older statements.</p>
+<p>If your bank changes its CSV columns, keep the rules that still read the
+old statements. Give files in the new format a filename suffix to select a
+different rules file. A full rebuild can then read both formats.</p>
 <p>Add a final underscore-separated suffix beginning with <code dir="auto">rfo</code> (rules file
 override) before the filename extensions. For example, both
 <code dir="auto">2024.04_rfo-card.csv</code> and <code dir="auto">march_rfo-card.bank.csv</code> select
@@ -473,7 +481,7 @@ just defines the parts that are shared across accounts.</p>
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">date-format %Y-%m-%d</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">currency $</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="skip 1fields date, description, amount, balancedate-format %Y-%m-%dcurrency $"><div></div></button></div></figure></div>
 <div class="sl-heading-wrapper level-h2"><h2 id="stability">Stability</h2><a class="sl-anchor-link" href="#stability"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stability”</span></a></div>
 <p>Rules files are a stable feature within
-<a href="http://hledger.org/">hledger</a>, and we’re just using the normal
+<a href="https://hledger.org/">hledger</a>, and we’re just using the normal
 hledger rules files. The account, bank and statement-specific rules
 files have been used and tested fairly extensively, I don’t expect this
 to change.</p>
@@ -488,12 +496,12 @@ to change.</p>
 		
 	</div>
 	<div class="pagination-links print:hidden astro-b5raizh3" dir="ltr">
-	<a href="/reference/input-files/" rel="prev" class="astro-b5raizh3">
+	<a href="/reference/incremental-import/" rel="prev" class="astro-b5raizh3">
 		<svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>
 		<span class="astro-b5raizh3">
 			Previous
 			<br class="astro-b5raizh3">
-			<span class="link-title astro-b5raizh3">Input files</span>
+			<span class="link-title astro-b5raizh3">Incremental import</span>
 		</span>
 	</a>
 	<a href="/reference/preprocess/" rel="next" class="astro-b5raizh3">

@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -394,12 +404,10 @@
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><p><code dir="auto">hledger-flow</code> looks for <a href="https://hledger.org/journal.html#market-prices">price files</a> to include in each yearly include file.</p>
-<p>For example, the presence of a file named <code dir="auto">${BASE}/prices/2020/prices.journal</code> will result in some extra include file magic.</p>
-<p>The rest of this section assumes you’ll have a file named <code dir="auto">prices/2020/prices.journal</code> which contains price data for the year 2020.
-The <code dir="auto">prices</code> directory should be right at the top of your <code dir="auto">hledger-flow</code> base directory, next to the <code dir="auto">import</code> directory.</p>
-<p><code dir="auto">hledger-flow</code> does not care how the price files got there, it only cares that you should have a separate file per year,
-and that it follows the above naming convention.</p>
+								<div class="sl-markdown-content"><p>Save the year’s <a href="https://hledger.org/hledger.html#p-directive">market prices as hledger <code dir="auto">P</code> directives</a>
+in <code dir="auto">prices/&lt;year&gt;/prices.journal</code>, under the ledger root alongside <code dir="auto">import/</code>.
+When import builds that year’s include file under <code dir="auto">import/</code>, it adds the price
+file if present. You supply the prices hledger uses to value your holdings.</p>
 <p>Here is an example script which downloads prices and follows the naming convention:
 <a href="https://gist.github.com/apauley/398fa031c202733959af76b3b8ce8197">https://gist.github.com/apauley/398fa031c202733959af76b3b8ce8197</a></p>
 <p>After running an import with available price files you’ll see a line has been added to <code dir="auto">import/2020-include.journal</code>:</p>

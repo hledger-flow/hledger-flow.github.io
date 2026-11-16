@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="02mq71w" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0xlhes2" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -220,6 +220,11 @@
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
+		<a href="/reference/incremental-import/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Incremental import</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/rules-files/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Rules files</span>
 				
@@ -286,6 +291,11 @@
 	</li><li class="astro-rmhv4bp6">
 		<a href="/guides/ledger/" class="astro-rmhv4bp6">
 				<span class="astro-rmhv4bp6">Using Ledger</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/guides/workload-generator/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Generate workloads for benchmarks</span>
 				
 			</a>
 	</li>
@@ -476,13 +486,13 @@ account that starts empty needs no opening balance.</p>
 <div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Generated 16 reports in reports/. Skipped 2 empty reports.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Each report starts with the hledger command that made it. Copy that line to tailor the report.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">hledger --file all-years.journal --period 2016 balance --pretty-tables --quarterly --flat --no-total transfer</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Balance changes in 2016:</span></div></div><div class="ec-line"><div class="code">
 </div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">┌──────────────────────────╥────────┬────────┬────────┬────────────┐</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">│                          ║ 2016Q1 │ 2016Q2 │ 2016Q3 │     2016Q4 │</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">╞══════════════════════════╬════════╪════════╪════════╪════════════╡</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">│ assets:transfers:savings ║      0 │      0 │      0 │ R-10000.00 │</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">└──────────────────────────╨────────┴────────┴────────┴────────────┘</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="Generated 16 reports in reports/. Skipped 2 empty reports.Each report starts with the hledger command that made it. Copy that line to tailor the report.hledger --file all-years.journal --period 2016 balance --pretty-tables --quarterly --flat --no-total transferBalance changes in 2016:┌──────────────────────────╥────────┬────────┬────────┬────────────┐│                          ║ 2016Q1 │ 2016Q2 │ 2016Q3 │     2016Q4 │╞══════════════════════════╬════════╪════════╪════════╪════════════╡│ assets:transfers:savings ║      0 │      0 │      0 │ R-10000.00 │└──────────────────────────╨────────┴────────┴────────┴────────────┘"><div></div></button></div></figure></div>
-<p>The transfer balance report lists transfer accounts that don’t add up to
-zero. <code dir="auto">assets:transfers:creditcard</code> isn’t there: both sides of every card
-payment are imported. The savings deposits came from the cheque account,
-but its statements for those months aren’t in the ledger yet. When Gawie
-imports them, he’ll classify their side of each deposit as
-<code dir="auto">assets:transfers:savings</code> too, and this row will drop to zero. Until then,
-the report reminds him.</p>
+<p>The report shows the change in each transfer account during each quarter.
+The card payments cancel within each quarter here. The R-10000 in the savings
+row is the other side of deposits into savings. Gawie has yet to import the
+cheque statements showing the withdrawals. When he does, he can check that
+the corresponding postings reach <code dir="auto">assets:transfers:savings</code>. If the two
+sides fall in different quarters, both quarters can show a change even after
+the transfer balances.</p>
 <p>The story ends with <a href="/tutorial/part-5/">part 5</a>, and a file that isn’t a
 statement at all.</p>
 </div>
