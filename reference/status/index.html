@@ -432,8 +432,8 @@ Interactive status also shows a <a href="/reference/release-notices/">cached upg
 give with <code dir="auto">--hledger-conf</code>, or else the first it finds of <code dir="auto">hledger.conf</code> in
 the current directory or a parent, <code dir="auto">~/.hledger.conf</code>, and <code dir="auto">hledger.conf</code> in
 your XDG config directory. hledger-flow runs hledger from the directory you
-run it in, so that file applies to import and reports too. Options in it can
-change the journals import generates, such as <code dir="auto">--layout</code> under <code dir="auto">[print]</code>.</p>
+run it in, so that file applies to import and reports too. Import runs
+<code dir="auto">hledger print</code>, so options under <code dir="auto">[print]</code> apply to journal generation.</p>
 <p>The <code dir="auto">hledger.conf</code> line in the Environment section at the end of status names
 the file, marked <code dir="auto">(found by hledger)</code> when you didn’t give it.</p>
 <p>Import checks the hledger version before writing journals when a statement path
