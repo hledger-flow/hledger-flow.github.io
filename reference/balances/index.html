@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="160lrs6" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0h2bka0" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,27 +172,32 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
+				<span class="astro-rmhv4bp6">Part 1: Try the example</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
+				<span class="astro-rmhv4bp6">Part 2: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				<span class="astro-rmhv4bp6">Part 3: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				<span class="astro-rmhv4bp6">Part 4: A difficult statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
+				<span class="astro-rmhv4bp6">Part 5: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-6/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 6: The last resort</span>
 				
 			</a>
 	</li>
@@ -241,7 +246,7 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/windows-hooks/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Windows import hooks</span>
+				<span class="astro-rmhv4bp6">Windows import scripts</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
@@ -434,7 +439,12 @@
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><div class="sl-heading-wrapper level-h2"><h2 id="opening-balances">Opening Balances</h2><a class="sl-anchor-link" href="#opening-balances"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Opening Balances”</span></a></div>
+								<div class="sl-markdown-content"><p><code dir="auto">hledger-flow init</code> gives the example account editable opening and closing
+balance journals with commented examples. Both files are optional. Import
+adds the balance files that exist when it generates that year’s account
+include. Use a <a href="/reference/manual-journals/">manual journal</a> for other entries in the
+account, such as a missing fee or a balance assertion.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="opening-balances">Opening Balances</h2><a class="sl-anchor-link" href="#opening-balances"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Opening Balances”</span></a></div>
 <p>If an account already held money before your first statement, record that
 amount in <code dir="auto">&lt;year&gt;-opening.journal</code> in the account folder. For example,
 <code dir="auto">import/john/mybank/savings/2018-opening.journal</code> is included before that
@@ -451,8 +461,10 @@ into later years.</p>
 <p>Similar to opening balances, <code dir="auto">hledger-flow</code> looks for an optional file
 named <code dir="auto">YEAR-closing.journal</code> in each account directory. Example:
 <code dir="auto">import/john/mybank/savings/1983-closing.journal</code></p>
-<p>If it exists the file will automatically be included at the end of the
-generated journal include file for that year.</p>
+<p>The yearly account include places this file after the statement journals
+and the optional account-level <code dir="auto">post-import.journal</code>. Use a closing entry
+when you deliberately want to bring the account balance to zero. A balance
+otherwise carries forward into later years.</p>
 <p>A closing balance may look something like this:</p>
 <div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">2018-06-01 Savings Account Closing Balance</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">assets:mybank:savings               $-234.56 = $0.00</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">    </span></span><span style="--0:#d6deeb;--1:#403f53">equity:opening/closing balances</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="2018-06-01 Savings Account Closing Balance    assets:mybank:savings               $-234.56 = $0.00    equity:opening/closing balances"><div></div></button></div></figure></div>
 <div class="sl-heading-wrapper level-h2"><h2 id="example-opening-and-closing-journal-files">Example Opening and Closing Journal Files</h2><a class="sl-anchor-link" href="#example-opening-and-closing-journal-files"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Example Opening and Closing Journal Files”</span></a></div>
@@ -464,13 +476,14 @@ the following files will be added to the include file if they exist:</p>
 <li><code dir="auto">import/john/mybank/savings/2019-opening.journal</code></li>
 <li><code dir="auto">import/john/mybank/savings/2019-closing.journal</code></li>
 </ol>
-<p>The <code dir="auto">opening.journal</code> will be included just before the other included
-entries, while the <code dir="auto">closing.journal</code> will be included just after the
-other entries in that include file.</p>
+<p>The account’s pre-import journal comes first, followed by the opening file
+and imported statements. The post-import journal comes next, followed by the
+closing file. Entries still carry their own dates. This order matters for
+assertions against other postings on the same day.</p>
 <p>An include file may look like this:</p>
 <div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">cat</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">import/john/mybank/savings/2019-include.journal</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="cat import/john/mybank/savings/2019-include.journal"><div></div></button></div></figure></div>
 <div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">### Generated by hledger-flow - DO NOT EDIT ###</span></div></div><div class="ec-line"><div class="code">
-</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 2019-opening.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 3-journal/2019/123456789_2019-01-30.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 2019-closing.journal</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="### Generated by hledger-flow - DO NOT EDIT ###include 2019-opening.journalinclude 3-journal/2019/123456789_2019-01-30.journalinclude 2019-closing.journal"><div></div></button></div></figure></div>
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include _manual_/2019/pre-import.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 2019-opening.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 3-journal/2019/123456789_2019-01-30.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include _manual_/2019/post-import.journal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">include 2019-closing.journal</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="### Generated by hledger-flow - DO NOT EDIT ###include _manual_/2019/pre-import.journalinclude 2019-opening.journalinclude 3-journal/2019/123456789_2019-01-30.journalinclude _manual_/2019/post-import.journalinclude 2019-closing.journal"><div></div></button></div></figure></div>
 <div class="sl-heading-wrapper level-h2"><h2 id="stability">Stability</h2><a class="sl-anchor-link" href="#stability"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stability”</span></a></div>
 <p>Closing balances sometimes result in <a href="https://github.com/apauley/hledger-flow/issues/79">unexpected query results</a>.
 In future we may change how/where the generated files include the closing journal.</p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz">
 	<head>
-		<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Windows import hooks | hledger-flow</title><link rel="canonical" href="https://hledger-flow.github.io/reference/windows-hooks/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.4.11"/><meta name="generator" content="Starlight v0.42.11"/><meta property="og:title" content="Windows import hooks"/><meta property="og:type" content="article"/><meta property="og:url" content="https://hledger-flow.github.io/reference/windows-hooks/"/><meta property="og:locale" content="en"/><meta property="og:description" content="PowerShell and executable preprocess and construct hooks on native Windows."/><meta property="og:site_name" content="hledger-flow"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="PowerShell and executable preprocess and construct hooks on native Windows."/>
+		<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Windows import scripts | hledger-flow</title><link rel="canonical" href="https://hledger-flow.github.io/reference/windows-hooks/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.4.11"/><meta name="generator" content="Starlight v0.42.11"/><meta property="og:title" content="Windows import scripts"/><meta property="og:type" content="article"/><meta property="og:url" content="https://hledger-flow.github.io/reference/windows-hooks/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Run preprocess and construct scripts or native executables on Windows."/><meta property="og:site_name" content="hledger-flow"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Run preprocess and construct scripts or native executables on Windows."/>
 		
 		
 <script>
@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="160lrs6" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0h2bka0" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,27 +172,32 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
+				<span class="astro-rmhv4bp6">Part 1: Try the example</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
+				<span class="astro-rmhv4bp6">Part 2: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				<span class="astro-rmhv4bp6">Part 3: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				<span class="astro-rmhv4bp6">Part 4: A difficult statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
+				<span class="astro-rmhv4bp6">Part 5: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-6/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 6: The last resort</span>
 				
 			</a>
 	</li>
@@ -241,7 +246,7 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/windows-hooks/" aria-current="page" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Windows import hooks</span>
+				<span class="astro-rmhv4bp6">Windows import scripts</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
@@ -399,17 +404,17 @@
 					
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<h1 id="_top" class="astro-bebwqqxs">Windows import hooks</h1>
+								<h1 id="_top" class="astro-bebwqqxs">Windows import scripts</h1>
 								</div>
 </div>
 							<div class="content-panel astro-a7po4psb">
 	<div class="sl-container astro-a7po4psb">
-								<div class="sl-markdown-content"><p>In the account directory, Windows checks each hook name in this order:
+								<div class="sl-markdown-content"><p>In the account directory, hledger-flow looks for each script (<code dir="auto">preprocess</code> or <code dir="auto">construct</code>) in this order:
 the extensionless file first, then <code dir="auto">.ps1</code>, then <code dir="auto">.exe</code>. For example,
 <code dir="auto">construct.ps1</code> takes precedence over <code dir="auto">construct.exe</code>. Move an old
 extensionless launcher out of the account directory to use the script directly.
 These are the supported filenames. To run a batch file or another scripting
-language, invoke its interpreter from a PowerShell hook.</p>
+language, invoke its interpreter from a PowerShell script.</p>
 <p>hledger-flow runs <code dir="auto">.ps1</code> files with Windows PowerShell, using the current
 execution policy. From <strong>Command Prompt</strong> (<code dir="auto">cmd.exe</code>), this example imports
 a base under Documents, permits local scripts for the child PowerShell
@@ -420,18 +425,18 @@ You can use <code dir="auto">Set-ExecutionPolicy -Scope Process RemoteSigned</co
 run <code dir="auto">hledger-flow import</code> directly.</p>
 <p>hledger-flow uses UTF-8 on Windows while running imports and reports, then
 restores the console’s previous code page. Names such as <code dir="auto">Morgan’s Current</code>
-are preserved in hook arguments and journal includes. When running <code dir="auto">hledger</code>
+are preserved in script arguments and journal includes. When running <code dir="auto">hledger</code>
 separately, set the console to UTF-8 with <code dir="auto">chcp 65001</code> in that terminal.
 Use the same setting before starting overlapping imports that share a Windows
 console, since those processes share its code page. For CSVs saved in a
 different encoding, set the CSV rules file’s <code dir="auto">encoding</code> directive. Save
 journal and rules files that contain non-ASCII text in UTF-8.</p>
-<p>Both scripts receive the same five positional arguments as the extensionless
-hooks. A PowerShell hook can start with
+<p>PowerShell and extensionless scripts receive the same five positional arguments.
+A PowerShell script can start with
 <code dir="auto">param($Source, $Destination, $Bank, $Account, $Owner)</code>.
 For <code dir="auto">preprocess.ps1</code>, write the CSV to <code dir="auto">$Destination</code>. For <code dir="auto">construct.ps1</code>,
 <code dir="auto">$Destination</code> is the literal <code dir="auto">-</code>: write the journal to standard output.
-Use <code dir="auto">throw</code> or <code dir="auto">exit</code> with a nonzero code to signal failure. If your hook ends
+Use <code dir="auto">throw</code> or <code dir="auto">exit</code> with a nonzero code to signal failure. If your script ends
 by running a native command, use <code dir="auto">exit $LASTEXITCODE</code> to forward its result.</p>
 </div>
 								<footer class="sl-flex astro-ddtxxk7k">

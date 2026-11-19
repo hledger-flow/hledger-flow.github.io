@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz">
 	<head>
-		<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Generate sample ledgers | hledger-flow</title><link rel="canonical" href="https://hledger-flow.github.io/guides/sample-ledger/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.4.11"/><meta name="generator" content="Starlight v0.42.11"/><meta property="og:title" content="Generate sample ledgers"/><meta property="og:type" content="article"/><meta property="og:url" content="https://hledger-flow.github.io/guides/sample-ledger/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Generate reproducible statements, rules and hooks to try features, share bug reports and benchmark imports."/><meta property="og:site_name" content="hledger-flow"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Generate reproducible statements, rules and hooks to try features, share bug reports and benchmark imports."/>
+		<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Generate sample ledgers | hledger-flow</title><link rel="canonical" href="https://hledger-flow.github.io/guides/sample-ledger/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.4.11"/><meta name="generator" content="Starlight v0.42.11"/><meta property="og:title" content="Generate sample ledgers"/><meta property="og:type" content="article"/><meta property="og:url" content="https://hledger-flow.github.io/guides/sample-ledger/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Generate reproducible statements, rules and import scripts to try features, share bug reports and benchmark imports."/><meta property="og:site_name" content="hledger-flow"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Generate reproducible statements, rules and import scripts to try features, share bug reports and benchmark imports."/>
 		
 		
 <script>
@@ -122,7 +122,7 @@
 </button>
 		<script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script>
 		<sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba">
-			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="160lrs6" class="astro-ipdry5cl">
+			<div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="0h2bka0" class="astro-ipdry5cl">
 	<script aria-hidden="true">
 		(() => {
 			try {
@@ -172,27 +172,32 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-1/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 1: The first statement</span>
+				<span class="astro-rmhv4bp6">Part 1: Try the example</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-2/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 2: Categories and reports</span>
+				<span class="astro-rmhv4bp6">Part 2: The first statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-3/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 3: A difficult statement</span>
+				<span class="astro-rmhv4bp6">Part 3: Categories and reports</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-4/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 4: When rules aren&#39;t enough</span>
+				<span class="astro-rmhv4bp6">Part 4: A difficult statement</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/tutorial/part-5/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Part 5: The last resort</span>
+				<span class="astro-rmhv4bp6">Part 5: When rules aren&#39;t enough</span>
+				
+			</a>
+	</li><li class="astro-rmhv4bp6">
+		<a href="/tutorial/part-6/" class="astro-rmhv4bp6">
+				<span class="astro-rmhv4bp6">Part 6: The last resort</span>
 				
 			</a>
 	</li>
@@ -241,7 +246,7 @@
 			</a>
 	</li><li class="astro-rmhv4bp6">
 		<a href="/reference/windows-hooks/" class="astro-rmhv4bp6">
-				<span class="astro-rmhv4bp6">Windows import hooks</span>
+				<span class="astro-rmhv4bp6">Windows import scripts</span>
 				
 			</a>
 	</li><li class="astro-rmhv4bp6">
@@ -472,7 +477,7 @@ script produce the same statements, rules and journals on every platform, so
 the command is all someone else needs to recreate your ledger. To report a bug, find a command
 whose output shows the problem and include it in the report. Change <code dir="auto">--seed</code>
 to get different dates, amounts and prices with the same layout.</p>
-<p>The hook scripts in the import types <code dir="auto">preprocess</code>, <code dir="auto">construct</code> and <code dir="auto">combined</code>
+<p>The scripts generated for the import types <code dir="auto">preprocess</code>, <code dir="auto">construct</code> and <code dir="auto">combined</code>
 are the one exception: generate them on the platform that will import the
 data. See <a href="#platforms">Platforms</a>.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="compare-five-import-paths">Compare five import paths</h2><a class="sl-anchor-link" href="#compare-five-import-paths"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Compare five import paths”</span></a></div>
@@ -500,15 +505,15 @@ category.</p>
 </tr>
 <tr>
 <td><code dir="auto">preprocess</code></td>
-<td>A hook classifies the merchant and writes a normalized CSV for the rules.</td>
+<td>The preprocess script classifies the merchant and writes a normalized CSV for the rules.</td>
 </tr>
 <tr>
 <td><code dir="auto">construct</code></td>
-<td>A hook classifies the merchant and writes both journal postings.</td>
+<td>The construct script classifies the merchant and writes both journal postings.</td>
 </tr>
 <tr>
 <td><code dir="auto">combined</code></td>
-<td>The preprocess hook classifies the merchant. The construct hook reads its CSV and writes the postings.</td>
+<td>The preprocess script classifies the merchant. The construct script reads its CSV and writes the postings.</td>
 </tr>
 </tbody>
 </table>
@@ -587,15 +592,15 @@ to amounts written with a symbol, such as <code dir="auto">$5</code>, and need h
 later. See <a href="/reference/price-files/#commodity-names">Commodity names</a>.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="platforms">Platforms</h2><a class="sl-anchor-link" href="#platforms"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Platforms”</span></a></div>
 <p>Generate on the platform that will import the data. On Linux and macOS,
-generated hooks use <code dir="auto">python3</code>. On native Windows they use PowerShell and
+the generated scripts use <code dir="auto">python3</code>. On native Windows they use PowerShell and
 invoke <code dir="auto">py -3</code> or <code dir="auto">python</code> on PATH. Python is needed during import for the
-three hook import types. You can move or copy an entire base on the same
-platform. See <a href="/reference/windows-hooks/">Windows import hooks</a> for script
+<code dir="auto">preprocess</code>, <code dir="auto">construct</code> and <code dir="auto">combined</code> import types. You can move or copy an entire base on the same
+platform. See <a href="/reference/windows-hooks/">Windows import scripts</a> for script
 execution settings.</p>
 <div class="sl-heading-wrapper level-h2"><h2 id="compare-import-times">Compare import times</h2><a class="sl-anchor-link" href="#compare-import-times"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Compare import times”</span></a></div>
 <p>Keep the generator revision and the full command with the benchmark results.
 To compare <code dir="auto">master</code> with a feature branch, generate once and give each binary
-a fresh copy of the base. Preserve executable permissions when copying hooks.
+a fresh copy of the base. Preserve executable permissions when copying scripts.
 Use the same machine, hledger executable, hledger configuration, Python interpreter and import
 concurrency (for example, <code dir="auto">--batch-size 4</code>). Time only the import. Check the
 journal and run reports afterwards.</p>
