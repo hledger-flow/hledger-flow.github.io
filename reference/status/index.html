@@ -39,7 +39,7 @@
 </template>
 		<link rel="stylesheet" href="/_astro/print.C9eyqPGL.css" media="print">
 	<link rel="stylesheet" href="/_astro/tokens.AfKs01Lm.css">
-<link rel="stylesheet" href="/_astro/common.C-cY9Bh3.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head>
+<link rel="stylesheet" href="/_astro/common.DHFZJ83Z.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head>
 	<body class="astro-g5ptsecz">
 		<a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a>
 		<div class="page sl-flex astro-yntsjkba">
@@ -457,9 +457,15 @@ than one commodity and has no market price directives. It points you to
 one <a href="/reference/price-files/">pair file</a> per currency pair, included from
 the year’s <code dir="auto">prices.journal</code>.
 Interactive status also shows a <a href="/reference/release-notices/">cached upgrade notice</a> when a previous import or report found a newer release.
-<code dir="auto">hledger-flow init</code> starts a ledger with a working example statement and
+Outside a ledger, the welcome screen highlights commands on colour terminals and shows
+the preview command under <strong>Next</strong>. Set <code dir="auto">NO_COLOR=1</code> for plain text.</p>
+<p><code dir="auto">hledger-flow init</code> starts a ledger with a working example statement and
 rules, plus starter journals for <a href="/reference/manual-journals/">manual entries</a>,
 <a href="/reference/balances/">opening and closing balances</a>, directives and prices.
+To preview the files in a new ledger, run <code dir="auto">hledger-flow init --dry-run</code> in the
+current folder or pass a destination, such as <code dir="auto">hledger-flow init --dry-run ~/finances</code>.
+The preview lists each starter file it would create or keep. Run the same command
+without <code dir="auto">--dry-run</code> to create the ledger and see which files were created or kept.
 The generated <code dir="auto">directives.journal</code> defines common currencies, BTC and satoshis,
 and standard account types. It links to the hledger manual for each section.
 Commodity aliases take effect in hledger versions that support them.
