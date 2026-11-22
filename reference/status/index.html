@@ -462,6 +462,12 @@ the preview command under <strong>Next</strong>. Set <code dir="auto">NO_COLOR=1
 <p><code dir="auto">hledger-flow init</code> starts a ledger with a working example statement and
 rules, plus starter journals for <a href="/reference/manual-journals/">manual entries</a>,
 <a href="/reference/balances/">opening and closing balances</a>, directives and prices.
+It also creates <code dir="auto">AGENTS.md</code> in the ledger root with guidance on where to edit
+transactions, how to rebuild reports and how to check the ledger with hledger.
+The guide explains when plain <a href="/reference/rules-files/">CSV rules</a> suffice,
+when a script hook is needed and how to speed up repeat imports with
+<a href="/reference/incremental-import/"><code dir="auto">--incremental</code></a>.
+You can adapt it to your ledger. Init keeps an existing <code dir="auto">AGENTS.md</code>.
 To preview the files in a new ledger, run <code dir="auto">hledger-flow init --dry-run</code> in the
 current folder or pass a destination, such as <code dir="auto">hledger-flow init --dry-run ~/finances</code>.
 The preview lists each starter file it would create or keep. Run the same command
